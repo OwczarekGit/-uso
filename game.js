@@ -40,28 +40,33 @@ songVolume.addEventListener("click",function(){
 },false);
 songBox.appendChild(songVolume);
 
-var zenith = new Song("map.osu","map.mp3","bluezenith","bg.jpg");
-var honesty = new Song("GYZE - HONESTY (Bibbity Bill) [DISHONEST].osu","audio.mp3","honesty","sillyalbumcoverxd.jpg");
+new Song("map.osu","map.mp3","bluezenith","bg.jpg");
 
-var zenith = new Song("Halozy - Genryuu Kaiko (Hollow Wings) [Higan Torrent].osu","Gennryuu Kaiko.mp3","gk","gk.jpg");
+new Song("GYZE - HONESTY (Bibbity Bill) [DISHONEST].osu","audio.mp3","honesty","sillyalbumcoverxd.jpg");
 
-var defenders = new Song("DragonForce - Defenders (Spaghetti) [Legend].osu","DragonForce-Defenders.mp3","defenders","BG.png");
+new Song("Team Nekokan - Can't Defeat Airman (Blue Dragon) [Holy Shit! It's Airman!!].osu","Can't Defeat Airman.mp3","airman","airman.jpg");
 
-var krucigang = new Song("Klocuch - Kruci Gang (Peuniak) [Nasz gang jest silny jak mauo ktory].osu","audio.mp3","krucigang","krucigang.jpg");
+new Song("Halozy - Genryuu Kaiko (Hollow Wings) [Higan Torrent].osu","Gennryuu Kaiko.mp3","gk","gk.jpg");
 
-var tengaku = new Song("Wagakki Band - Tengaku (Shiro) [Uncompressed Fury of a Raging Japanese God].osu","Tengaku.mp3","tengaku","TGBG.jpg");
+new Song("DragonForce - Defenders (Spaghetti) [Legend].osu","DragonForce-Defenders.mp3","defenders","BG.png");
 
-var dadada = new Song("dadada.osu","m.mp3","dadada","54ee19bcffffa20b58bc6fc0c042a588.jpg");
+new Song("Mili - Summoning 101 (-NeBu-) [Scientific Evocation].osu","audio.mp3","sum101","aarw.jpg");
 
-var wd = new Song("Cartoons - Witch Doctor (Mara) [TAG4].osu","Cartoons - Witch Doctor.mp3","wd","bg.jpg");
+new Song("Klocuch - Kruci Gang (Peuniak) [Nasz gang jest silny jak mauo ktory].osu","audio.mp3","krucigang","krucigang.jpg");
 
-var bom = new Song("Nico Nico Douga - BARUSA of MIKOSU (DJPop) [TAG4].osu","BARUSA of MIKOSU.mp3","bom","BARUSAofMIKOSU.png");
+new Song("Wagakki Band - Tengaku (Shiro) [Uncompressed Fury of a Raging Japanese God].osu","Tengaku.mp3","tengaku","TGBG.jpg");
 
-var pmc = new Song("IOSYS - Cirno's Perfect Math Class (Louis Cyphre) [TAG4].osu","IOSYS - Cirno's Perfect Math Class.mp3","pmc","moe.jpg");
+new Song("dadada.osu","m.mp3","dadada","54ee19bcffffa20b58bc6fc0c042a588.jpg");
 
-var pmc = new Song("Renard - Rainbow Dash Likes Girls (Stay Gay Pony Girl) (ztrot) [Holy Shit! It's Rainbow Dash!!].osu","Renard - Rainbow Dash Likes Girls (Stay Gay Pony Girl).mp3","rdlg","RD-Salute1.png");
+new Song("Cartoons - Witch Doctor (Mara) [TAG4].osu","Cartoons - Witch Doctor.mp3","wd","bg.jpg");
 
-var cent = new Song("Knife Party - Centipede (Sugoi-_-Desu) [This isn't a map, just a simple visualisation].osu","02-knife_party-centipede.mp3","cent","cent.jpg");
+new Song("Nico Nico Douga - BARUSA of MIKOSU (DJPop) [TAG4].osu","BARUSA of MIKOSU.mp3","bom","BARUSAofMIKOSU.png");
+
+new Song("IOSYS - Cirno's Perfect Math Class (Louis Cyphre) [TAG4].osu","IOSYS - Cirno's Perfect Math Class.mp3","pmc","moe.jpg");
+
+new Song("Renard - Rainbow Dash Likes Girls (Stay Gay Pony Girl) (ztrot) [Holy Shit! It's Rainbow Dash!!].osu","Renard - Rainbow Dash Likes Girls (Stay Gay Pony Girl).mp3","rdlg","RD-Salute1.png");
+
+new Song("Knife Party - Centipede (Sugoi-_-Desu) [This isn't a map, just a simple visualisation].osu","02-knife_party-centipede.mp3","cent","cent.jpg");
 
 
 //init(zenith.loadMap(),zenith.loadMp3());
