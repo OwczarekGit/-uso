@@ -131,14 +131,14 @@ function gameLoop(){
 
     c.beginPath();
     c.fillStyle = "#fff";
-    c.font = "48px Arial";
+    c.font = "48px 'Exo 2'";
     c.fillText(PScore,1300,60);
     c.stroke();
     c.closePath();
 
     c.beginPath();
     c.fillStyle = "#fff";
-    c.font = "64px Arial";
+    c.font = "64px 'Exo 2'";
     c.fillText("x"+PCombo,20,900);
     c.stroke();
     c.closePath();
@@ -149,21 +149,21 @@ function gameLoop(){
     if(gameTime>circleArray[circleArray.length-2].time){
         c.beginPath();
         c.fillStyle = "#fff";
-        c.font = "64px Arial";
+        c.font = "64px 'Exo 2'";
         c.fillText("Hits: "+hits,canvas.width/2-100,canvas.height/2-100);
         c.stroke();
         c.closePath();
 
         c.beginPath();
         c.fillStyle = "#fff";
-        c.font = "64px Arial";
+        c.font = "64px 'Exo 2'";
         c.fillText("Misses: "+miss,canvas.width/2-100,canvas.height/2+50);
         c.stroke();
         c.closePath();
 
         c.beginPath();
         c.fillStyle = "#fff";
-        c.font = "86px Arial";
+        c.font = "86px 'Exo 2'";
         c.fillText(Math.round( (hits*100)/(hits+miss) )+"%",canvas.width/2-50,canvas.height/2+250);
         c.stroke();
         c.closePath();
@@ -172,7 +172,7 @@ function gameLoop(){
         //RATING
         c.beginPath();
         c.fillStyle = "#fff";
-        c.font = "128px Arial";
+        c.font = "128px 'Exo 2'";
         if(miss==0){
             c.fillText("SS",canvas.width/2+300,canvas.height/2);
         }

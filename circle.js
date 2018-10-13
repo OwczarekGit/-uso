@@ -44,7 +44,7 @@ class Circle{
         //console.log(this.time);
         c.beginPath();
         c.fillStyle = "purple";
-        c.font = "30px Arial";
+        c.font = "30px 'Exo 2'";
         c.arc((this.posX)+100,(this.posY)+100,this.CS,0,360,false);
         c.fill();
         c.fillStyle = "#fff";
