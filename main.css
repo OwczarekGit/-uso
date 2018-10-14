@@ -4,6 +4,7 @@
     box-sizing: border-box;
     overflow: hidden;
     font-family: 'Exo 2', sans-serif;
+    transition: transform 0.2s ease-in-out;
 }
 
 html,body{
@@ -16,6 +17,7 @@ body{
     background-position: center;
     background-size: cover;
     cursor: url(cursor.png)24 24,auto;
+    overflow: hidden;
 }
 
 canvas{
@@ -23,4 +25,63 @@ canvas{
     position: absolute;
     top: 0;
     left: 0;
+}
+
+.songBox{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    background: rgba(40, 184, 231, 0.308);
+    margin: 0 auto;
+    overflow-x: visible;
+    overflow-y: scroll;
+}
+
+.songBox::-webkit-scrollbar{
+    width: 8px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.384);
+}
+
+.songBox::-webkit-scrollbar-thumb{
+    width: 5px;
+    border-radius: 15px;
+    background: rgba(9, 190, 250, 0.603);
+}
+
+.songBoxToggle{
+    position: fixed;
+    bottom: 0;
+    right: 232px;
+    width: 48px;
+    height: 48px;
+    z-index: 100;
+    cursor: pointer;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    transition: color .2s ease-in-out; 
+}
+
+.songBoxToggle:hover{
+    color: rgb(24, 218, 252);
+}
+
+.songVolume{
+    width: 90%;
+    margin: 10px auto;
+    display: block;
+}
+
+.selection-box{
+    background-position: center;
+    background-size: cover;
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    border-radius: 15px;
+    border: 2px solid black;
 }

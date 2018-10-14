@@ -16,25 +16,36 @@ var map;
 var exitLoop = false;
 var songPath = "songs/";
 var clickSound = "clickfeedback.wav";
+var missSound = "combobreak.mp3";
+
 var songBox = document.createElement("div");
-songBox.style.position = "absolute";
-songBox.style.right = "0";
-songBox.style.top = "10px";
-songBox.style.height = "100%";
-songBox.style.background = "transparent";
-//songBox.style.display = "flex";
-//songBox.style.justifyContent = "center";
-//songBox.style.alignItems = "center";
-//songBox.style.flexDirection = "column";
-songBox.style.margin = "0 auto";
-songBox.style.overflowY = "scroll";
+var songBoxOpened=true;
+function toggleSongBox(){
+    if(songBoxOpened){
+        songBox.style.transform = "translateX(100%)";
+        songBoxOpened=false;
+    }else{
+        songBox.style.transform = "translateX(0%)";
+        songBoxOpened=true;
+    }
+}
+songBox.classList.add("songBox");
+var songBoxToggle = document.createElement("div");
+songBoxToggle.classList.add("songBoxToggle");
+songBoxToggle.addEventListener("click",function(){
+    toggleSongBox();
+},false);
+document.body.appendChild(songBoxToggle);
+songBoxToggle.innerHTML = '<i class="fas fa-music"></i>';
 document.body.appendChild(songBox);
+
 var songVolume = document.createElement("input");
+songVolume.classList.add("songVolume");
 songVolume.setAttribute("type","range");
-songVolume.setAttribute("value","0.5");
 songVolume.setAttribute("min","0.0");
 songVolume.setAttribute("max","1.0");
-songVolume.setAttribute("step","0.05");
+songVolume.setAttribute("value","0.5");
+songVolume.setAttribute("step","0.01");
 songVolume.addEventListener("click",function(){
     music.volume = songVolume.value;
 },false);
@@ -68,6 +79,16 @@ new Song("Renard - Rainbow Dash Likes Girls (Stay Gay Pony Girl) (ztrot) [Holy S
 
 new Song("Knife Party - Centipede (Sugoi-_-Desu) [This isn't a map, just a simple visualisation].osu","02-knife_party-centipede.mp3","cent","cent.jpg");
 
+window.onresize = function(){
+    setCanvasSize();
+}
+
+setCanvasSize();
+function setCanvasSize(){
+    canvas.width = window.innerWidth;
+    canvas.height= window.innerHeight;
+}
+
 
 //init(zenith.loadMap(),zenith.loadMp3());
 function init(MAP,MAP_SONG,BG){
@@ -82,6 +103,7 @@ function init(MAP,MAP_SONG,BG){
     gameTime=0;
     miss=0;
     hits=0;
+    
 
     music.src = MAP_SONG;
     mapLoc = MAP;
@@ -91,7 +113,7 @@ function init(MAP,MAP_SONG,BG){
         var temp0=[];
         temp0=data.split("\n");
         for(let i=0;i<temp0.length;i++){
-            mapObj.push(temp0[i].split(",",3));
+            mapObj.push(temp0[i].split(",",4));
         }
 
         createCircles(mapObj);
@@ -100,6 +122,7 @@ function init(MAP,MAP_SONG,BG){
     setTimeout(function(){
         c.clearRect(0,0,canvas.width,canvas.height);
         exitLoop = false;
+        toggleSongBox();
         music.play();
         gameLoop();
     },1000);
@@ -137,14 +160,15 @@ function gameLoop(){
     c.beginPath();
     c.fillStyle = "#fff";
     c.font = "48px 'Exo 2'";
-    c.fillText(PScore,1300,60);
+    let scoreX = ((PScore.toString().length)*48)-14*(PScore.toString().length);
+    c.fillText(PScore,canvas.width-scoreX,48);
     c.stroke();
     c.closePath();
 
     c.beginPath();
     c.fillStyle = "#fff";
     c.font = "64px 'Exo 2'";
-    c.fillText("x"+PCombo,20,900);
+    c.fillText("x"+PCombo,24,canvas.height-24);
     c.stroke();
     c.closePath();
 

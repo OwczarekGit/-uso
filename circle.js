@@ -1,10 +1,11 @@
 class Circle{
-    constructor([a,b,c]){
+    constructor([a,b,c,d]){
         this.posX = parseInt(a)*2;
         this.posY = parseInt(b)*2;
         this.time = parseInt(c);
         this.drawed=false;
         this.CS=76;
+        this.comboData = d; //unused (for now)
         //console.log(this);
         this.ar=400;
         this.arC=this.CS*3;
@@ -29,7 +30,7 @@ class Circle{
                     hits++;
                 }else{
                     if(PCombo>10){
-                        let bre = new Audio("combobreak.mp3");
+                        let bre = new Audio(missSound);
                         bre.volume = 0.5;
                         bre.play();
                     }
