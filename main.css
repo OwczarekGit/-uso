@@ -34,7 +34,6 @@ canvas{
     height: 100%;
     background: rgba(40, 184, 231, 0.308);
     margin: 0 auto;
-    overflow-x: visible;
     overflow-y: scroll;
 }
 
@@ -68,12 +67,6 @@ canvas{
 
 .songBoxToggle:hover{
     color: rgb(24, 218, 252);
-}
-
-.songVolume{
-    width: 90%;
-    margin: 10px auto;
-    display: block;
 }
 
 .selection-box{

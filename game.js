@@ -14,6 +14,8 @@ var PScore=0;
 var PCombo=0;
 var map;
 var exitLoop = false;
+var oldMusicVolume= music.volume;
+var musicVolumeVisualyzer=0;
 var songPath = "songs/";
 var clickSound = "clickfeedback.wav";
 var missSound = "combobreak.mp3";
@@ -39,17 +41,7 @@ document.body.appendChild(songBoxToggle);
 songBoxToggle.innerHTML = '<i class="fas fa-music"></i>';
 document.body.appendChild(songBox);
 
-var songVolume = document.createElement("input");
-songVolume.classList.add("songVolume");
-songVolume.setAttribute("type","range");
-songVolume.setAttribute("min","0.0");
-songVolume.setAttribute("max","1.0");
-songVolume.setAttribute("value","0.5");
-songVolume.setAttribute("step","0.01");
-songVolume.addEventListener("click",function(){
-    music.volume = songVolume.value;
-},false);
-songBox.appendChild(songVolume);
+
 
 new Song("map.osu","map.mp3","bluezenith","bg.jpg");
 
@@ -140,21 +132,46 @@ canvas.onmousemove = function(e){
     MY=e.clientY;
 }
 
+canvas.addEventListener("wheel",function(e){
+    if(e.deltaY<0){
+        try {
+            music.volume+=0.05;
+            musicVolumeVisualyzer=100;
+        } catch(ex){}
+    }else if(e.deltaY>0){
+        try {
+            music.volume-=0.05;
+            musicVolumeVisualyzer=100;
+        } catch(ex){}
+    }
+},false);
+
 
 function createCircles(z){
     for(let i=0; i<z.length;i++){
         circleArray.push(new Circle(mapObj[i]));
-        //console.log(1);
     }
-    //console.log(circleArray);
+}
+
+function musicVolumeChange(){
+    c.beginPath();
+    c.fillStyle = "#fff";
+    c.fillRect(canvas.width-232-36,canvas.height-48,28,(-music.volume*200));
+    c.fill();
+    c.closePath();
 }
 
 function gameLoop(){
-    //c.clearRect(0,0,1000,1000);
-    c.clearRect(0,0,2000,2000);
+    c.clearRect(0,0,canvas.width,canvas.height);
     for(let i=circleArray.length-1;i>=0;i--){
         circleArray[i].update();
-        //console.log(circleArray[i].update());
+    }
+
+    //MUSIC VOLUME
+    if(musicVolumeVisualyzer>0){
+        musicVolumeChange();
+        musicVolumeVisualyzer--;
+        console.log(musicVolumeVisualyzer);
     }
 
     c.beginPath();
@@ -175,6 +192,9 @@ function gameLoop(){
     gameTime=music.currentTime*1000+80;
     if(exitLoop){return;}
     requestAnimationFrame(gameLoop);
+
+    
+
     if(gameTime>circleArray[circleArray.length-2].time){
         c.beginPath();
         c.fillStyle = "#fff";
