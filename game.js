@@ -171,7 +171,6 @@ function gameLoop(){
     if(musicVolumeVisualyzer>0){
         musicVolumeChange();
         musicVolumeVisualyzer--;
-        console.log(musicVolumeVisualyzer);
     }
 
     c.beginPath();
