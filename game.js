@@ -49,6 +49,8 @@ new Song("GYZE - HONESTY (Bibbity Bill) [DISHONEST].osu","audio.mp3","honesty","
 
 new Song("Team Nekokan - Can't Defeat Airman (Blue Dragon) [Holy Shit! It's Airman!!].osu","Can't Defeat Airman.mp3","airman","airman.jpg");
 
+new Song("Camellia - Exit This Earth's Atomosphere (rrtyui) [Evolution].osu","audio.mp3","etea","bg.jpg");
+
 new Song("Halozy - Genryuu Kaiko (Hollow Wings) [Higan Torrent].osu","Gennryuu Kaiko.mp3","gk","gk.jpg");
 
 new Song("DragonForce - Defenders (Spaghetti) [Legend].osu","DragonForce-Defenders.mp3","defenders","BG.png");
@@ -69,6 +71,8 @@ new Song("IOSYS - Cirno's Perfect Math Class (Louis Cyphre) [TAG4].osu","IOSYS -
 
 new Song("Renard - Rainbow Dash Likes Girls (Stay Gay Pony Girl) (ztrot) [Holy Shit! It's Rainbow Dash!!].osu","Renard - Rainbow Dash Likes Girls (Stay Gay Pony Girl).mp3","rdlg","RD-Salute1.png");
 
+
+
 new Song("Knife Party - Centipede (Sugoi-_-Desu) [This isn't a map, just a simple visualisation].osu","02-knife_party-centipede.mp3","cent","cent.jpg");
 
 window.onresize = function(){
@@ -81,8 +85,14 @@ function setCanvasSize(){
     canvas.height= window.innerHeight;
 }
 
+function resetSettings(){
+    miss=0;
+    hits=0;
+    PScore=0;
+    PCombo=0;
+}
 
-//init(zenith.loadMap(),zenith.loadMp3());
+
 function init(MAP,MAP_SONG,BG){
     music.pause();
     music.currentTime=0;
@@ -127,6 +137,10 @@ function readFile(evt,MAP) {
     reader.onload = function(){alert(target.result);}
 }
 
+function mapInNewRange(x,oldMin,oldMax,newMin,newMax){
+    return (x-oldMin)/(oldMax-oldMin)*(newMax-newMin)+newMin;
+}
+
 canvas.onmousemove = function(e){
     MX=e.clientX;
     MY=e.clientY;
@@ -146,6 +160,19 @@ canvas.addEventListener("wheel",function(e){
     }
 },false);
 
+var changingCurrentTime=false;
+window.addEventListener("keydown",function(e){
+    if(e.key == "Shift"){
+        changingCurrentTime = true;
+    }
+},false);
+
+window.addEventListener("keyup",function(e){
+    if(e.key == "Shift"){
+        changingCurrentTime = false;
+    }
+},false);
+
 
 function createCircles(z){
     for(let i=0; i<z.length;i++){
@@ -161,6 +188,34 @@ function musicVolumeChange(){
     c.closePath();
 }
 
+function changeCurrentTime(){
+    c.beginPath();
+    c.strokeStyle = "#fff";
+    c.moveTo(MX,0);
+    c.lineTo(MX,canvas.height);
+    c.font = "64px 'Exo 2'";
+    c.fillText(mapInNewRange(MX,0,canvas.width,0,music.duration),MX+10,MY+100);
+    c.fillStyle = "#cbcbcb11";
+    c.fillRect(0,canvas.height-200,MX,200);
+    music.currentTime = mapInNewRange(MX,0,canvas.width,0,music.duration);
+
+    resetSettings();
+    for(let i=0;i < circleArray.length;i++){
+        if(circleArray[i].time > music.currentTime*1000){
+            circleArray[i].drawed = false;
+            circleArray[i].arC=circleArray[i].CS*3;
+            
+        }else{
+            circleArray[i].drawed = true;
+        }
+        
+    }
+
+    c.fill();
+    c.stroke();
+    c.closePath();
+}
+
 function gameLoop(){
     c.clearRect(0,0,canvas.width,canvas.height);
     for(let i=circleArray.length-1;i>=0;i--){
@@ -171,6 +226,11 @@ function gameLoop(){
     if(musicVolumeVisualyzer>0){
         musicVolumeChange();
         musicVolumeVisualyzer--;
+    }
+
+    if(changingCurrentTime){
+        changeCurrentTime();
+        music.play();
     }
 
     c.beginPath();
