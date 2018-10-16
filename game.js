@@ -1,3 +1,6 @@
+var GLOBALCIRCLESIZE=76;
+var GLOBALAPPROACHCIRLESIZE=GLOBALCIRCLESIZE*3;
+
 var mapLoc;
 var mapObj=[];
 var circleArray = [];
@@ -19,29 +22,7 @@ var musicVolumeVisualyzer=0;
 var songPath = "songs/";
 var clickSound = "clickfeedback.wav";
 var missSound = "combobreak.mp3";
-
-var songBox = document.createElement("div");
-var songBoxOpened=true;
-function toggleSongBox(){
-    if(songBoxOpened){
-        songBox.style.transform = "translateX(100%)";
-        songBoxOpened=false;
-    }else{
-        songBox.style.transform = "translateX(0%)";
-        songBoxOpened=true;
-    }
-}
-songBox.classList.add("songBox");
-var songBoxToggle = document.createElement("div");
-songBoxToggle.classList.add("songBoxToggle");
-songBoxToggle.addEventListener("click",function(){
-    toggleSongBox();
-},false);
-document.body.appendChild(songBoxToggle);
-songBoxToggle.innerHTML = '<i class="fas fa-music"></i>';
-document.body.appendChild(songBox);
-
-
+var drawCircleHitbox=false;
 
 new Song("map.osu","map.mp3","bluezenith","bg.jpg");
 
@@ -203,7 +184,7 @@ function changeCurrentTime(){
     for(let i=0;i < circleArray.length;i++){
         if(circleArray[i].time > music.currentTime*1000){
             circleArray[i].drawed = false;
-            circleArray[i].arC=circleArray[i].CS*3;
+            circleArray[i].approachCircle=GLOBALAPPROACHCIRLESIZE;
             
         }else{
             circleArray[i].drawed = true;
@@ -218,9 +199,13 @@ function changeCurrentTime(){
 
 function gameLoop(){
     c.clearRect(0,0,canvas.width,canvas.height);
+    c.textAlign="center"; 
+
     for(let i=circleArray.length-1;i>=0;i--){
         circleArray[i].update();
     }
+
+    c.textBaseline="Alphabetic"; 
 
     //MUSIC VOLUME
     if(musicVolumeVisualyzer>0){
@@ -233,14 +218,18 @@ function gameLoop(){
         music.play();
     }
 
+
+    //POINTS
+    c.textAlign="right"; 
     c.beginPath();
     c.fillStyle = "#fff";
-    c.font = "48px 'Exo 2'";
-    let scoreX = ((PScore.toString().length)*48)-14*(PScore.toString().length);
-    c.fillText(PScore,canvas.width-scoreX,48);
+    c.font = "64px 'Exo 2'";
+    c.fillText(PScore,canvas.width-16,72);
     c.stroke();
     c.closePath();
 
+    //COMBO
+    c.textAlign="left"; 
     c.beginPath();
     c.fillStyle = "#fff";
     c.font = "64px 'Exo 2'";
@@ -253,26 +242,27 @@ function gameLoop(){
     requestAnimationFrame(gameLoop);
 
     
-
+    //SCORE SCREEN
+    c.textAlign="center"; 
     if(gameTime>circleArray[circleArray.length-2].time){
         c.beginPath();
         c.fillStyle = "#fff";
         c.font = "64px 'Exo 2'";
-        c.fillText("Hits: "+hits,canvas.width/2-100,canvas.height/2-100);
+        c.fillText("Hits: "+hits,canvas.width/2,canvas.height/2-100);
         c.stroke();
         c.closePath();
 
         c.beginPath();
         c.fillStyle = "#fff";
         c.font = "64px 'Exo 2'";
-        c.fillText("Misses: "+miss,canvas.width/2-100,canvas.height/2+50);
+        c.fillText("Misses: "+miss,canvas.width/2,canvas.height/2+50);
         c.stroke();
         c.closePath();
 
         c.beginPath();
         c.fillStyle = "#fff";
         c.font = "86px 'Exo 2'";
-        c.fillText(Math.round( (hits*100)/(hits+miss) )+"%",canvas.width/2-50,canvas.height/2+250);
+        c.fillText(Math.round( (hits*100)/(hits+miss) )+"%",canvas.width/2,canvas.height/2+250);
         c.stroke();
         c.closePath();
 
@@ -282,22 +272,22 @@ function gameLoop(){
         c.fillStyle = "#fff";
         c.font = "128px 'Exo 2'";
         if(miss==0){
-            c.fillText("SS",canvas.width/2+300,canvas.height/2);
+            c.fillText("SS",canvas.width/2+256,canvas.height/2);
         }
         else if(miss<32){
-            c.fillText("S",canvas.width/2+300,canvas.height/2);
+            c.fillText("S",canvas.width/2+256,canvas.height/2);
         }
         else if(miss<64){
-            c.fillText("A",canvas.width/2+300,canvas.height/2);
+            c.fillText("A",canvas.width/2+256,canvas.height/2);
         }
         else if(miss<128){
-            c.fillText("B",canvas.width/2+300,canvas.height/2);
+            c.fillText("B",canvas.width/2+256,canvas.height/2);
         }
         else if(miss<256){
-            c.fillText("C",canvas.width/2+300,canvas.height/2);
+            c.fillText("C",canvas.width/2+256,canvas.height/2);
         }
         else{
-            c.fillText("D",canvas.width/2+300,canvas.height/2);
+            c.fillText("D",canvas.width/2+256,canvas.height/2);
         }
         c.stroke();
         c.closePath();

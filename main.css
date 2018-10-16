@@ -66,7 +66,7 @@ canvas{
 }
 
 .songBoxToggle:hover{
-    color: rgb(24, 218, 252);
+    color: #ff69b4;
 }
 
 .selection-box{
@@ -78,3 +78,55 @@ canvas{
     border-radius: 15px;
     border: 2px solid black;
 }
+
+.settingsPanel{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 300px;
+    background: rgba(0, 0, 0, 0.705);
+    margin: 0 auto;
+    transform: translateX(-100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.settingsPanelToggle{
+    position: fixed;
+    bottom: 0;
+    right: 280px;
+    width: 48px;
+    height: 48px;
+    z-index: 100;
+    cursor: pointer;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    transition: color .2s ease-in-out; 
+}
+
+.settingsPanelToggle:hover{
+    color: #ff69b4;
+}
+
+.settingspanel-checkbox{
+    width: 24px;
+    height: 24px;
+    margin: 15px;
+    position: relative;
+    color: #fff;
+}
+
+.settingspanel-checkbox::before{
+    content: "Display hitboxes";
+    position: absolute;
+    width: 164px;
+    height: 64px;
+    right: -200px;
+}
+

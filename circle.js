@@ -1,14 +1,12 @@
 class Circle{
     constructor([a,b,c,d]){
-        this.posX = parseInt(a)*2;
-        this.posY = parseInt(b)*2;
+        this.posX = parseInt(a)*2+100;
+        this.posY = parseInt(b)*2+100;
         this.time = parseInt(c);
         this.drawed=false;
-        this.CS=76;
         this.comboData = d; //unused (for now)
-        //console.log(this);
         this.ar=400;
-        this.arC=this.CS*3;
+        this.approachCircle=GLOBALCIRCLESIZE*3;
         this.COMBO=CCOMBO+1;
         CCOMBO++;
         
@@ -20,7 +18,7 @@ class Circle{
             if(gameTime>=this.time){
                 this.drawed=true;
                 
-                if((MX-this.CS/3>=this.posX-this.CS/3 && MY-this.CS/3>=this.posY-this.CS/3) && (MX+this.CS<=this.posX+this.CS*5 && MY+this.CS<=this.posY+this.CS*5)) {
+                if((MX>=this.posX-GLOBALCIRCLESIZE-4 && MY>=this.posY-GLOBALCIRCLESIZE-4) && (MX<=this.posX+GLOBALCIRCLESIZE+4 && MY<=this.posY+GLOBALCIRCLESIZE+4)) {
                     PCombo+=1
                     PScore+=300;
                     PScore=PScore+PCombo;
@@ -41,31 +39,54 @@ class Circle{
         }
     }
 
+    drawHitbox(){
+        c.beginPath();
+        c.lineWidth=2;
+        c.strokeStyle ="#ffffff88";
+        c.fillStyle = "#ffffff88";
+        c.strokeRect(this.posX-GLOBALCIRCLESIZE-4,this.posY-GLOBALCIRCLESIZE-4, GLOBALCIRCLESIZE*2+8,GLOBALCIRCLESIZE*2+8);
+        c.font = GLOBALCIRCLESIZE/3+"px 'Exo 2'";
+        c.fillText("X:"+this.posX+"  "+"Y:"+this.posY,this.posX,this.posY-GLOBALCIRCLESIZE-8);
+        c.stroke();
+        c.fill();
+        c.closePath();
+    }
+
     draw(){
-        //console.log(this.time);
+        c.lineWidth = 5;
+        c.strokeStyle ="#fff";
+
         c.beginPath();
         c.fillStyle = "purple";
-        c.font = "30px 'Exo 2'";
-        c.arc((this.posX)+100,(this.posY)+100,this.CS,0,360,false);
+        c.arc((this.posX),(this.posY),GLOBALCIRCLESIZE,0,360,false);
         c.fill();
-        c.fillStyle = "#fff";
-        c.fillText(this.COMBO,(this.posX)+80,(this.posY)+110);
         c.stroke();
         c.closePath();
 
+
         c.beginPath();
-        c.fillStyle ="none";
-        c.strokeStyle = "#fff";
-        c.arc((this.posX)+100,(this.posY)+100,this.arC,0,360,false);
-        if(this.arC>this.CS){
-            this.arC-=6;
-        }
-        c.lineWidth=6;
+        c.textBaseline="middle"; 
+        c.font = GLOBALCIRCLESIZE/2.5+"px 'Exo 2'";
+        c.fillStyle="#fff";
+        c.fillText(this.COMBO,(this.posX),(this.posY));
+        c.fill();
         c.stroke();
         c.closePath();
 
         
+        c.beginPath();
+        c.fillStyle ="none";
+        c.arc((this.posX),(this.posY),this.approachCircle,0,360,false);
+        if(this.approachCircle>GLOBALCIRCLESIZE){
+            this.approachCircle-=(GLOBALCIRCLESIZE*5)/60;
+        }
+        c.stroke();
+        c.closePath();
 
+        if(drawCircleHitbox){
+            c.textBaseline="bottom"; 
+            this.drawHitbox();
+        }
     }
 
 }
