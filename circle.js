@@ -18,7 +18,7 @@ class Circle{
             if(gameTime>=this.time){
                 this.drawed=true;
                 
-                if((MX>=this.posX-GLOBALCIRCLESIZE-4 && MY>=this.posY-GLOBALCIRCLESIZE-4) && (MX<=this.posX+GLOBALCIRCLESIZE+4 && MY<=this.posY+GLOBALCIRCLESIZE+4)) {
+                if((MX>=this.posX-GLOBALCIRCLESIZE-8 && MY>=this.posY-GLOBALCIRCLESIZE-8) && (MX<=this.posX+GLOBALCIRCLESIZE+8 && MY<=this.posY+GLOBALCIRCLESIZE+8)) {
                     PCombo+=1
                     PScore+=300;
                     PScore=PScore+PCombo;
@@ -41,10 +41,11 @@ class Circle{
 
     drawHitbox(){
         c.beginPath();
+        c.textBaseline="bottom"; 
         c.lineWidth=2;
         c.strokeStyle ="#ffffff88";
         c.fillStyle = "#ffffff88";
-        c.strokeRect(this.posX-GLOBALCIRCLESIZE-4,this.posY-GLOBALCIRCLESIZE-4, GLOBALCIRCLESIZE*2+8,GLOBALCIRCLESIZE*2+8);
+        c.strokeRect(this.posX-GLOBALCIRCLESIZE-8,this.posY-GLOBALCIRCLESIZE-8, GLOBALCIRCLESIZE*2+8,GLOBALCIRCLESIZE*2+8);
         c.font = GLOBALCIRCLESIZE/3+"px 'Exo 2'";
         c.fillText("X:"+this.posX+"  "+"Y:"+this.posY,this.posX,this.posY-GLOBALCIRCLESIZE-8);
         c.stroke();
@@ -53,6 +54,10 @@ class Circle{
     }
 
     draw(){
+        if(drawCircleHitbox){
+            this.drawHitbox();
+        }
+
         c.lineWidth = 5;
         c.strokeStyle ="#fff";
 
@@ -70,7 +75,6 @@ class Circle{
         c.fillStyle="#fff";
         c.fillText(this.COMBO,(this.posX),(this.posY));
         c.fill();
-        c.stroke();
         c.closePath();
 
         
@@ -83,10 +87,7 @@ class Circle{
         c.stroke();
         c.closePath();
 
-        if(drawCircleHitbox){
-            c.textBaseline="bottom"; 
-            this.drawHitbox();
-        }
+        
     }
 
 }
