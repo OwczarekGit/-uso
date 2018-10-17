@@ -2,7 +2,7 @@ songBox.insert(new Song("map.osu","map.mp3","bluezenith","bg.jpg").add());
 
 songBox.insert(new Song("GYZE - HONESTY (Bibbity Bill) [DISHONEST].osu","audio.mp3","honesty","sillyalbumcoverxd.jpg").add());
 
-songBox.insert(new Song("Laur - Sound Chimera (Nattu) [Chimera].osu","Laur - Sound Chimera.MP3","chimera","eyes.jpg").add());
+songBox.insert(new Song("Laur - Sound Chimera (Nattu) [Chimera].osu","Laur - Sound Chimera.mp3","chimera","eyes.jpg").add());
 
 songBox.insert(new Song("Camellia - Exit This Earth's Atomosphere (rrtyui) [Evolution].osu","audio.mp3","etea","bg.jpg").add());
 
