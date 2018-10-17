@@ -26,11 +26,35 @@ function setCircleSize(value){
 }
 
 
-
+var drawCircleHitboxShown = false;
 var drawCircleHitbox=document.createElement("input");
 drawCircleHitbox.type = "checkbox";
 drawCircleHitbox.classList.add("settingspanel-checkbox");
 drawCircleHitbox.addEventListener("click",function(){
-    drawCircleHitbox = true;
+    if(drawCircleHitboxShown){
+        drawCircleHitbox = false;
+        drawCircleHitboxShown=false;
+
+    }else{
+        drawCircleHitbox = true;
+        drawCircleHitboxShown=true;
+    }
 },false);
 settingsPanel.insert(drawCircleHitbox);
+
+var drawMouseHitboxShown = false;
+var drawMouseHitbox=document.createElement("input");
+drawMouseHitbox.type = "checkbox";
+drawMouseHitbox.classList.add("settingspanel-checkbox");
+drawMouseHitbox.addEventListener("click",function(){
+    if(drawMouseHitboxShown){
+        drawMouseHitbox = false;
+        drawMouseHitboxShown=false;
+
+    }else{
+        drawMouseHitbox = true;
+        drawMouseHitboxShown=true;
+    }
+},false);
+
+settingsPanel.insert(drawMouseHitbox);

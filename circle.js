@@ -1,6 +1,6 @@
 class Circle{
     constructor([a,b,c,d]){
-        this.posX = parseInt(a)*2+100;
+        this.posX = parseInt(a)*2+200;
         this.posY = parseInt(b)*2+100;
         this.time = parseInt(c);
         this.drawed=false;
@@ -18,7 +18,7 @@ class Circle{
             if(gameTime>=this.time){
                 this.drawed=true;
                 
-                if((MX>=this.posX-GLOBALCIRCLESIZE-8 && MY>=this.posY-GLOBALCIRCLESIZE-8) && (MX<=this.posX+GLOBALCIRCLESIZE+8 && MY<=this.posY+GLOBALCIRCLESIZE+8)) {
+                if((MX>=this.posX-GLOBALCIRCLESIZE-12 && MY>=this.posY-GLOBALCIRCLESIZE-12) && (MX<=this.posX+GLOBALCIRCLESIZE+12 && MY<=this.posY+GLOBALCIRCLESIZE+12)) {
                     PCombo+=1
                     PScore+=300;
                     PScore=PScore+PCombo;
@@ -45,7 +45,7 @@ class Circle{
         c.lineWidth=2;
         c.strokeStyle ="#ffffff88";
         c.fillStyle = "#ffffff88";
-        c.strokeRect(this.posX-GLOBALCIRCLESIZE-8,this.posY-GLOBALCIRCLESIZE-8, GLOBALCIRCLESIZE*2+8,GLOBALCIRCLESIZE*2+8);
+        c.strokeRect(this.posX-GLOBALCIRCLESIZE-12,this.posY-GLOBALCIRCLESIZE-12, GLOBALCIRCLESIZE*2+24,GLOBALCIRCLESIZE*2+24);
         c.font = GLOBALCIRCLESIZE/3+"px 'Exo 2'";
         c.fillText("X:"+this.posX+"  "+"Y:"+this.posY,this.posX,this.posY-GLOBALCIRCLESIZE-8);
         c.stroke();

@@ -147,6 +147,7 @@ function musicVolumeChange(){
     c.closePath();
 }
 
+
 function drawCursorPosition(){
     c.beginPath();
     c.lineWidth=1;
@@ -211,6 +212,10 @@ function gameLoop(){
     if(changingCurrentTime){
         changeCurrentTime();
         music.play();
+    }
+
+    if(drawMouseHitboxShown){
+        drawCursorPosition();
     }
     
     //POINTS

@@ -2,13 +2,15 @@ songBox.insert(new Song("map.osu","map.mp3","bluezenith","bg.jpg").add());
 
 songBox.insert(new Song("GYZE - HONESTY (Bibbity Bill) [DISHONEST].osu","audio.mp3","honesty","sillyalbumcoverxd.jpg").add());
 
-songBox.insert(new Song("Team Nekokan - Can't Defeat Airman (Blue Dragon) [Holy Shit! It's Airman!!].osu","Can't Defeat Airman.mp3","airman","airman.jpg").add());
+songBox.insert(new Song("Laur - Sound Chimera (Nattu) [Chimera].osu","Laur - Sound Chimera.MP3","chimera","eyes.jpg").add());
 
 songBox.insert(new Song("Camellia - Exit This Earth's Atomosphere (rrtyui) [Evolution].osu","audio.mp3","etea","bg.jpg").add());
 
-songBox.insert(new Song("Halozy - Genryuu Kaiko (Hollow Wings) [Higan Torrent].osu","Gennryuu Kaiko.mp3","gk","gk.jpg").add());
-
 songBox.insert(new Song("DragonForce - Defenders (Spaghetti) [Legend].osu","DragonForce-Defenders.mp3","defenders","BG.png").add());
+
+songBox.insert(new Song("Team Nekokan - Can't Defeat Airman (Blue Dragon) [Holy Shit! It's Airman!!].osu","Can't Defeat Airman.mp3","airman","airman.jpg").add());
+
+songBox.insert(new Song("Halozy - Genryuu Kaiko (Hollow Wings) [Higan Torrent].osu","Gennryuu Kaiko.mp3","gk","gk.jpg").add());
 
 songBox.insert(new Song("Mili - Summoning 101 (-NeBu-) [Scientific Evocation].osu","audio.mp3","sum101","aarw.jpg").add());
 
